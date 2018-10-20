@@ -11,16 +11,22 @@ public class View extends JFrame{
 	
 	private JTextField shiftField; 
 	private JTextField subField; 
+	private JTextField keyField;
+	private JTextField transField;
 	private JTextField inField;
 	private JTextField outField;
 	
 	private JLabel subVerschl;
 	private JLabel shiftVerschl;
+	private JLabel keyVerschl;
+	private JLabel transVerschl;
 	private JLabel input; 
 	private JLabel output; 
 	
 	private JRadioButton subAuswahl;
 	private JRadioButton shiftAuswahl;
+	private JRadioButton keyAuswahl;
+	private JRadioButton transAuswahl;
 	private ButtonGroup buttongroup1; 
 	private JButton buttonEnc;
 	private JButton buttonDec;
@@ -35,6 +41,8 @@ public class View extends JFrame{
 	private Controll c1;
 	private Model m1; 
 	
+	
+	
 	public View(Controll c, Model m){
 		this.c1=c; 
 		this.m1=m; 
@@ -47,6 +55,8 @@ public class View extends JFrame{
 		//Buttons:
 		this.subAuswahl= new JRadioButton("Sub",true);
 		this.shiftAuswahl= new JRadioButton("Shift");
+		this.keyAuswahl = new JRadioButton("Keyword");
+		this.transAuswahl=new JRadioButton("Trans");
 		
 		this.subAuswahl.addActionListener((ActionListener) this.c1);
 		this.subAuswahl.addFocusListener((FocusListener) this.c1);
@@ -54,9 +64,17 @@ public class View extends JFrame{
 		this.shiftAuswahl.addActionListener((ActionListener) this.c1);
 		this.shiftAuswahl.addFocusListener((FocusListener) this.c1);
 		
+		this.keyAuswahl.addActionListener((ActionListener) this.c1);
+		this.keyAuswahl.addFocusListener((FocusListener) this.c1);
+		
+		this.transAuswahl.addActionListener((ActionListener) this.c1);
+		this.transAuswahl.addFocusListener((FocusListener) this.c1);
+		
 		this.buttongroup1= new ButtonGroup(); 
 		this.buttongroup1.add(this.subAuswahl);
 		this.buttongroup1.add(this.shiftAuswahl);
+		this.buttongroup1.add(this.keyAuswahl);
+		this.buttongroup1.add(this.transAuswahl);
 		
 		this.buttonApl=new JButton("Generate");
 		this.buttonApl.addActionListener((ActionListener) this.c1);
@@ -89,15 +107,25 @@ public class View extends JFrame{
 		//Alphabet-Selection-Box
 		this.subVerschl= new JLabel("Substitution:"); 
 		this.shiftVerschl= new JLabel ("Shift:");
+		this.keyVerschl= new JLabel("Keyword:");
+		this.transVerschl = new JLabel("Trans:");
 		this.shiftField= new JTextField();
 		this.subField=new JTextField(); 
+		this.keyField=new JTextField();
+		this.transField=new JTextField();
 		
-		this.alphbox.setLayout(new GridLayout(3,2));
+		this.alphbox.setLayout(new GridLayout(5,2));
 		this.alphbox.add(this.subVerschl);
 		this.alphbox.add(this.subField);
 		
 		this.alphbox.add(this.shiftVerschl);
 		this.alphbox.add(this.shiftField);
+		
+		this.alphbox.add(this.keyVerschl);
+		this.alphbox.add(this.keyField);
+		
+		this.alphbox.add(this.transVerschl);
+		this.alphbox.add(this.transField);
 		
 		this.alphbox.add(this.buttonApl);
 		this.alphbox.add(this.buttonRes);
@@ -155,12 +183,50 @@ public class View extends JFrame{
 		return false; 
 	}
 	
+	public boolean isKeySel() {
+		boolean sel;
+		if(this.keyAuswahl.isSelected()) {
+			sel=true;
+		} else {
+			sel=false;
+		}
+		return sel;
+	}
+	
+	public boolean isKey(Object o) {
+		if(o==this.keyAuswahl) return true; 
+		return false; 
+	}
+	
+	public boolean isTransSel() {
+		boolean sel;
+		if(this.transAuswahl.isSelected()) {
+			sel=true;
+		} else {
+			sel=false;
+		}
+		return sel;
+	}
+	
+	public boolean isTrans(Object o) {
+		if(o==this.transAuswahl) return true; 
+		return false; 
+	}
+	
 	public String getSubField() {
 		return this.subField.getText();
 	}
 	
 	public String getShiftField() {
 		return this.shiftField.getText();
+	}
+	
+	public String getKeyField() {
+		return this.keyField.getText();
+	}
+	
+	public String getTransField() {
+		return this.transField.getText();
 	}
 	
 	public String getIn() {
