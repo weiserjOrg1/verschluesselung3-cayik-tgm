@@ -103,6 +103,8 @@ public class View extends JFrame{
 		//Selection-Box
 		this.selbox.add(this.subAuswahl);
 		this.selbox.add(this.shiftAuswahl);
+		this.selbox.add(this.keyAuswahl);
+		this.selbox.add(this.transAuswahl);
 		
 		//Alphabet-Selection-Box
 		this.subVerschl= new JLabel("Substitution:"); 
@@ -258,15 +260,31 @@ public class View extends JFrame{
 	}
 	
 	// changeLayout
-	public void changeSubShi(int value) {
+	public void changeSubShiKeyTrans(int value) {
 		if(value == Model.SHIFT) {
 			this.shiftField.setEditable(true);
 			this.subField.setEditable(false);
+			this.keyField.setEditable(false);
+			this.transField.setEditable(false);
 			this.m1.setMode(Model.SHIFT);
-		} else {
+		} else if(value==Model.SUB){
 			this.subField.setEditable(true);
 			this.shiftField.setEditable(false);
+			this.keyField.setEditable(false);
+			this.transField.setEditable(false);
 			this.m1.setMode(Model.SUB);
+		} else if(value==Model.KEY) {
+			this.subField.setEditable(false);
+			this.shiftField.setEditable(false);
+			this.keyField.setEditable(true);
+			this.transField.setEditable(false);
+			this.m1.setMode(Model.KEY);
+		} else if(value==Model.TRAN) {
+			this.subField.setEditable(false);
+			this.shiftField.setEditable(false);
+			this.keyField.setEditable(false);
+			this.transField.setEditable(true);
+			this.m1.setMode(Model.TRAN);
 		}
 	}
 }
